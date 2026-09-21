@@ -1,0 +1,14 @@
+{
+  "name": "Aprendo Jugando",
+  "short_name": "Aprendo Jugando",
+  "description": "App educativa para bebés: animales, letras, números y colores",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#FFF4D6",
+  "theme_color": "#FFF4D6",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

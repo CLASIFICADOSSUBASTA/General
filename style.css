@@ -1,0 +1,226 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #FFF4D6;
+  font-family: "Comic Sans MS", "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+}
+
+#pantalla-categorias,
+#pantalla-items {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+#pantalla-items.oculto,
+#pantalla-categorias.oculto {
+  display: none;
+}
+
+.barra-superior {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.barra-superior .titulo {
+  flex: 1;
+  margin: 8px 0 16px;
+}
+
+#boton-volver {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  background: #ffffffaa;
+  color: #6B4226;
+  font-family: inherit;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+}
+
+#boton-volver:active {
+  transform: scale(0.93) translateY(3px);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.12);
+}
+
+.tarjeta-categoria {
+  width: min(42vw, 220px);
+  justify-content: center;
+  gap: 8px;
+}
+
+.emoji-categoria {
+  font-size: clamp(48px, 12vw, 72px);
+}
+
+.tarjeta-categoria .etiqueta {
+  background: none;
+  text-shadow: none;
+  color: #ffffff;
+  padding: 0;
+}
+
+.mensaje-vacio {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(20px, 5vw, 28px);
+  color: #6B4226;
+  margin-top: 40px;
+}
+
+.titulo {
+  font-size: clamp(28px, 6vw, 48px);
+  color: #6B4226;
+  text-align: center;
+  margin: 8px 0 16px;
+  text-shadow: 2px 2px 0 #ffffffaa;
+}
+
+.cuadricula {
+  flex: 1;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 20px;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+.tarjeta {
+  border: none;
+  border-radius: 32px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: min(42vw, 200px);
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.15);
+  transition: transform 0.15s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.tarjeta:active {
+  transform: scale(0.93) translateY(4px);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+}
+
+.tarjeta.tocada {
+  animation: rebote 0.4s ease;
+}
+
+@keyframes rebote {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.88) rotate(-3deg); }
+  60% { transform: scale(1.12) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.tarjeta .etiqueta {
+  width: 100%;
+  padding: 10px 6px 12px;
+  font-size: clamp(18px, 4vw, 26px);
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+#pantalla-video {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pantalla-video.oculto {
+  display: none;
+}
+
+#video-animal {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#boton-cerrar {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.85);
+  color: #6B4226;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+
+#boton-cerrar:active {
+  transform: scale(0.9);
+}
+
+#boton-repetir {
+  position: absolute;
+  left: 50%;
+  bottom: max(40px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: 18px 32px;
+  border-radius: 999px;
+  border: none;
+  background: #FFD75E;
+  color: #6B4226;
+  font-family: inherit;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.2);
+  animation: aparecer 0.25s ease;
+}
+
+#boton-repetir.oculto {
+  display: none;
+}
+
+#boton-repetir:active {
+  transform: translateX(-50%) scale(0.93) translateY(4px);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

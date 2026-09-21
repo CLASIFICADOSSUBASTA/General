@@ -1,0 +1,12 @@
+[
+  { "id": "leon", "nombre": "León", "video": "videos/leon.mp4", "imagen": "images/leon.jpg", "color": "#F4A340" },
+  { "id": "elefante", "nombre": "Elefante", "video": "videos/elefante.mp4", "imagen": "images/elefante.jpg", "color": "#8FA7B3" },
+  { "id": "vaca", "nombre": "Vaca", "video": "videos/vaca.mp4", "imagen": "images/vaca.jpg", "color": "#7FC8A9" },
+  { "id": "gallina", "nombre": "Gallina", "video": "videos/gallina.mp4", "imagen": "images/gallina.jpg", "color": "#F6D860" },
+  { "id": "hipopotamo", "nombre": "Hipopótamo", "video": "videos/hipopotamo.mp4", "imagen": "images/hipopotamo.jpg", "color": "#B79CD4" },
+  { "id": "gato", "nombre": "Gato", "video": "videos/gato.mp4", "imagen": "images/gato.jpg", "color": "#F2B880" },
+  { "id": "oveja", "nombre": "Oveja", "video": "videos/oveja.mp4", "imagen": "images/oveja.jpg", "color": "#E8E4D8" },
+  { "id": "caballo", "nombre": "Caballo", "video": "videos/caballo.mp4", "imagen": "images/caballo.jpg", "color": "#D9A066" },
+  { "id": "perro", "nombre": "Perro", "video": "videos/perro.mp4", "imagen": "images/perro.jpg", "color": "#C98C53" },
+  { "id": "jirafa", "nombre": "Jirafa", "video": "videos/jirafa.mp4", "imagen": "images/jirafa.jpg", "color": "#E8C468" }
+]

@@ -1,0 +1,6 @@
+[
+  { "id": "animales", "nombre": "Animales", "emoji": "🐾", "color": "#7FC8A9", "archivo": "data/animales.json" },
+  { "id": "letras", "nombre": "Letras", "emoji": "🔤", "color": "#6FC3DF", "archivo": "data/letras.json" },
+  { "id": "numeros", "nombre": "Números", "emoji": "🔢", "color": "#F4A340", "archivo": "data/numeros.json" },
+  { "id": "colores", "nombre": "Colores", "emoji": "🎨", "color": "#E17DC2", "archivo": "data/colores.json" }
+]
