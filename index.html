@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Animalitos</title>
+<meta name="description" content="App educativa de animalitos para bebés">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFF4D6">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="pantalla-inicio">
+  <h1 class="titulo">🐾 Animalitos 🐾</h1>
+  <div id="cuadricula" class="cuadricula" aria-label="Elige un animalito"></div>
+</div>
+
+<div id="pantalla-video" class="oculto">
+  <video id="video-animal" playsinline webkit-playsinline></video>
+  <button id="boton-cerrar" aria-label="Cerrar">✕</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
