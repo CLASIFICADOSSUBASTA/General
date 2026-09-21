@@ -1,5 +1,9 @@
+const pantallaCategorias = document.getElementById("pantalla-categorias");
+const cuadriculaCategorias = document.getElementById("cuadricula-categorias");
+const pantallaItems = document.getElementById("pantalla-items");
 const cuadricula = document.getElementById("cuadricula");
-const pantallaInicio = document.getElementById("pantalla-inicio");
+const tituloCategoria = document.getElementById("titulo-categoria");
+const botonVolver = document.getElementById("boton-volver");
 const pantallaVideo = document.getElementById("pantalla-video");
 const videoAnimal = document.getElementById("video-animal");
 const botonCerrar = document.getElementById("boton-cerrar");
@@ -35,8 +39,8 @@ function cerrarVideo() {
   botonRepetir.classList.add("oculto");
 }
 
-function abrirVideo(animal) {
-  videoAnimal.src = animal.video;
+function abrirVideo(item) {
+  videoAnimal.src = item.video;
   botonRepetir.classList.add("oculto");
   pantallaVideo.classList.remove("oculto");
   videoAnimal.play().catch(() => {});
@@ -48,16 +52,16 @@ function repetirVideo() {
   videoAnimal.play().catch(() => {});
 }
 
-function crearTarjeta(animal) {
+function crearTarjeta(item) {
   const boton = document.createElement("button");
   boton.className = "tarjeta";
-  boton.style.backgroundImage = `url("${animal.imagen}")`;
-  boton.style.backgroundColor = animal.color || "#eee";
-  boton.setAttribute("aria-label", animal.nombre);
+  boton.style.backgroundImage = `url("${item.imagen}")`;
+  boton.style.backgroundColor = item.color || "#eee";
+  boton.setAttribute("aria-label", item.nombre);
 
   const etiqueta = document.createElement("span");
   etiqueta.className = "etiqueta";
-  etiqueta.textContent = animal.nombre;
+  etiqueta.textContent = item.nombre;
   boton.appendChild(etiqueta);
 
   boton.addEventListener("click", () => {
@@ -67,7 +71,7 @@ function crearTarjeta(animal) {
       "animationend",
       () => {
         boton.classList.remove("tocada");
-        abrirVideo(animal);
+        abrirVideo(item);
       },
       { once: true }
     );
@@ -75,15 +79,66 @@ function crearTarjeta(animal) {
   return boton;
 }
 
+function crearTarjetaCategoria(categoria) {
+  const boton = document.createElement("button");
+  boton.className = "tarjeta tarjeta-categoria";
+  boton.style.background = categoria.color;
+  boton.setAttribute("aria-label", categoria.nombre);
+
+  const emoji = document.createElement("span");
+  emoji.className = "emoji-categoria";
+  emoji.textContent = categoria.emoji;
+
+  const etiqueta = document.createElement("span");
+  etiqueta.className = "etiqueta";
+  etiqueta.textContent = categoria.nombre;
+
+  boton.appendChild(emoji);
+  boton.appendChild(etiqueta);
+
+  boton.addEventListener("click", () => {
+    sonarBoop();
+    boton.classList.add("tocada");
+    boton.addEventListener("animationend", () => abrirCategoria(categoria), { once: true });
+  });
+  return boton;
+}
+
+async function abrirCategoria(categoria) {
+  const respuesta = await fetch(categoria.archivo);
+  const items = await respuesta.json();
+
+  cuadricula.innerHTML = "";
+  tituloCategoria.textContent = `${categoria.emoji} ${categoria.nombre}`;
+
+  if (items.length === 0) {
+    const vacio = document.createElement("p");
+    vacio.className = "mensaje-vacio";
+    vacio.textContent = "¡Muy pronto habrá contenido aquí! 🚧";
+    cuadricula.appendChild(vacio);
+  } else {
+    items.forEach((item) => cuadricula.appendChild(crearTarjeta(item)));
+  }
+
+  pantallaCategorias.classList.add("oculto");
+  pantallaItems.classList.remove("oculto");
+}
+
+function volverACategorias() {
+  pantallaItems.classList.add("oculto");
+  pantallaCategorias.classList.remove("oculto");
+}
+
 async function iniciar() {
-  const respuesta = await fetch("data/animales.json");
-  const animales = await respuesta.json();
-  animales.forEach((animal) => cuadricula.appendChild(crearTarjeta(animal)));
+  const respuesta = await fetch("data/categorias.json");
+  const categorias = await respuesta.json();
+  categorias.forEach((categoria) => cuadriculaCategorias.appendChild(crearTarjetaCategoria(categoria)));
 }
 
 videoAnimal.addEventListener("ended", () => botonRepetir.classList.remove("oculto"));
 botonCerrar.addEventListener("click", cerrarVideo);
 botonRepetir.addEventListener("click", repetirVideo);
+botonVolver.addEventListener("click", volverACategorias);
 
 iniciar();
 

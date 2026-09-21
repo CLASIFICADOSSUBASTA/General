@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Animalitos</title>
-<meta name="description" content="App educativa de animalitos para bebés">
+<title>Aprendo Jugando</title>
+<meta name="description" content="App educativa para bebés: animales, letras, números y colores">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FFF4D6">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -13,9 +13,17 @@
 </head>
 <body>
 
-<div id="pantalla-inicio">
-  <h1 class="titulo">🐾 Animalitos 🐾</h1>
-  <div id="cuadricula" class="cuadricula" aria-label="Elige un animalito"></div>
+<div id="pantalla-categorias">
+  <h1 class="titulo">¿Qué quieres aprender?</h1>
+  <div id="cuadricula-categorias" class="cuadricula" aria-label="Elige una categoría"></div>
+</div>
+
+<div id="pantalla-items" class="oculto">
+  <div class="barra-superior">
+    <button id="boton-volver" aria-label="Volver">← Volver</button>
+    <h1 id="titulo-categoria" class="titulo"></h1>
+  </div>
+  <div id="cuadricula" class="cuadricula" aria-label="Elige un elemento"></div>
 </div>
 
 <div id="pantalla-video" class="oculto">

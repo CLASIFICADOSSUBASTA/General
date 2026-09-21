@@ -1,7 +1,7 @@
 {
-  "name": "Animalitos",
-  "short_name": "Animalitos",
-  "description": "App educativa de animalitos para bebés",
+  "name": "Aprendo Jugando",
+  "short_name": "Aprendo Jugando",
+  "description": "App educativa para bebés: animales, letras, números y colores",
   "start_url": "./index.html",
   "display": "fullscreen",
   "orientation": "any",

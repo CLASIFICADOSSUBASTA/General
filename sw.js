@@ -1,11 +1,15 @@
-const CACHE = "animalitos-v3";
+const CACHE = "aprendo-jugando-v1";
 const ARCHIVOS = [
   "./",
   "index.html",
   "style.css",
   "app.js",
   "manifest.json",
+  "data/categorias.json",
   "data/animales.json",
+  "data/letras.json",
+  "data/numeros.json",
+  "data/colores.json",
   "images/leon.jpg",
   "images/elefante.jpg",
   "images/vaca.jpg",
@@ -28,6 +32,8 @@ const ARCHIVOS = [
   "videos/jirafa.mp4"
 ];
 
+const ES_MEDIA = /\/(videos|images|icons)\//;
+
 self.addEventListener("install", (evento) => {
   evento.waitUntil(
     caches.open(CACHE).then((cache) => cache.addAll(ARCHIVOS))
@@ -45,7 +51,31 @@ self.addEventListener("activate", (evento) => {
 });
 
 self.addEventListener("fetch", (evento) => {
-  evento.respondWith(
-    caches.match(evento.request).then((respuesta) => respuesta || fetch(evento.request))
-  );
+  const esMedia = ES_MEDIA.test(new URL(evento.request.url).pathname);
+
+  if (esMedia) {
+    // Videos e imágenes pesan mucho: se sirven de la caché primero para funcionar sin conexión.
+    evento.respondWith(
+      caches.match(evento.request).then(
+        (enCache) =>
+          enCache ||
+          fetch(evento.request).then((respuesta) => {
+            const copia = respuesta.clone();
+            caches.open(CACHE).then((cache) => cache.put(evento.request, copia));
+            return respuesta;
+          })
+      )
+    );
+  } else {
+    // El código de la app se pide siempre a la red primero para que las actualizaciones lleguen al instante.
+    evento.respondWith(
+      fetch(evento.request)
+        .then((respuesta) => {
+          const copia = respuesta.clone();
+          caches.open(CACHE).then((cache) => cache.put(evento.request, copia));
+          return respuesta;
+        })
+        .catch(() => caches.match(evento.request))
+    );
+  }
 });
